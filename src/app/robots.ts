@@ -5,7 +5,6 @@ export default function robots() {
       allow: "/",
       disallow: "/private/",
     },
-
     sitemap: "https://codegyaan.com/sitemap.xml",
   };
 }
