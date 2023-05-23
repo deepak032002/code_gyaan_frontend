@@ -6,6 +6,6 @@ export default function robots() {
       disallow: "/private/",
     },
 
-    sitemap: "https://codegyaan.com/sitmap.xml",
+    sitemap: "https://codegyaan.com/sitemap.xml",
   };
 }
