@@ -1,5 +1,10 @@
-import Header from "@/components/Header";
 import React from "react";
+
+export const metadata = {
+  title: "Code Gyaan - About",
+  description:
+    "Unlock your coding potential with Code Gyaan, brought to you by Deepak Verma. The go-to resource for coding and programming, Code Gyaan offers quality content, tutorials, tips, news, and interviews with industry experts. From beginner basics to advanced techniques, Deepak Verma and our passionate team of experienced coders are here to help you stay ahead of the game, unleash your creativity, and make a positive impact on the world through the power of coding. Join us on this exciting coding journey and let's excel together. Explore Code Gyaan now!",
+};
 
 const Page = () => {
   return (
