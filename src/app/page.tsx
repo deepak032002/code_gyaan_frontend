@@ -7,7 +7,7 @@ export const metadata = {
     "Welcome to Code Gyaan, your ultimate destination for coding and programming tutorials.",
 };
 
-const Page = () => {
+const Page = async() => {
   return <Home />;
 };
 

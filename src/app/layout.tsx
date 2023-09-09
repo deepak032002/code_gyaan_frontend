@@ -10,9 +10,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header isNotHome={true} />
-        {children}
-        <Footer />
+          <Header isNotHome={true} />
+          {children}
+          <Footer />
       </body>
     </html>
   );

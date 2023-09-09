@@ -24,15 +24,24 @@ const Header = ({ isNotHome }: HeaderProps) => {
   };
 
   useEffect(() => {
+    if (isShowMobileNav) {
+      document.body.classList.add('overflow-hidden')
+    }else{
+      document.body.classList.remove('overflow-hidden')
+    }
+    console.log('first')
+  },[isShowMobileNav])
+
+  useEffect(() => {
     window.addEventListener("scroll", () => {
       const header = document.querySelector(`.${styles.header_container}`);
       if (header) {
         if (window.scrollY > 0) {
           setisShowTextWhite(true);
-          header.classList.add(styles.header_shadow, "md:px-20", "px-10");
+          header.classList.add(styles.header_shadow, "px-3");
         } else {
           setisShowTextWhite(false);
-          header.classList.remove(styles.header_shadow, "md:px-20", "px-10");
+          header.classList.remove(styles.header_shadow, "px-3");
         }
       }
     });
@@ -43,7 +52,7 @@ const Header = ({ isNotHome }: HeaderProps) => {
   return (
     <div className={classNames(styles.header_container)}>
       <div
-        className={classNames("mx-auto flex justify-between py-4 px-8", {
+        className={classNames("mx-auto flex justify-between py-4 max-w-[1400px]", {
           "text-white": !isNotHome || isShowTextWhite,
         })}
       >
