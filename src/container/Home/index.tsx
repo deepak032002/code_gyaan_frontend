@@ -8,14 +8,25 @@ import Image from "next/image";
 import BlogCard from "@/components/BlogCard";
 import NewsLetter from "@/components/NewsLetter";
 import Container from "@/components/Container";
+import { BlogPost } from "@/types";
+import { useQuery } from "react-query";
+import { getBlogs } from "@/services";
+
+interface Posts {
+  message: string;
+  page: number;
+  results: BlogPost[];
+  totalItem: number;
+  totalPage: number;
+}
 
 const Home = () => {
-  useEffect(() => {
-    (async () => {
-      const res = await fetch("http://localhost:5000/");
-      console.log(await res.text());
-    })();
-  }, []);
+  const { isLoading, data } = useQuery<Posts>({
+    queryKey: ["posts"],
+    queryFn: getBlogs,
+  });
+
+  console.log(data, isLoading, "<--");
 
   return (
     <>
@@ -39,13 +50,18 @@ const Home = () => {
 
       <Container className="blog_section mt-10">
         <h2 className="text-gray-800 text-center">Our Latest Artiles</h2>
-        <div className="blog_container my-8 grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 justify-items-center md:gap-8 gap-y-12">
-          {Array(4)
-            .fill("")
-            .map((_, index) => {
-              return <BlogCard key={index} className="col-span-1" />;
+
+        {isLoading ? (
+          <>Loading...</>
+        ) : (
+          <div className="blog_container my-8 grid xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 justify-items-center md:gap-8 gap-y-12">
+            {data?.results.map((blog, index) => {
+              return (
+                <BlogCard blog={blog} key={index} className="col-span-1" />
+              );
             })}
-        </div>
+          </div>
+        )}
       </Container>
       <NewsLetter />
     </>
